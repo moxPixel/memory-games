@@ -1,0 +1,62 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #b993d6, #8ca6db); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.grille { /* grille */
+  background: rgb(195,195,195);
+  display: grid; /* creation d une grille */
+  grid-template: repeat(3, 200px) / repeat(4, 200px); /* creation d une grille 3 ranger de 20px 4 collone de 200px */
+  width: 800px;
+  height: 600px;
+  margin: 75px auto 0;
+}
+
+.carte {
+  background-color: transparent;
+  perspective: 1000px; /* perspective donne une meilleur perspective en eloignant la camera  */
+  margin: 5px;
+}
+
+.double-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s; /* transition de transformation */
+  transform-style: preserve-3d; /* preserve-3d permet de garder une apparence 3d quand elle se retourne */
+}
+
+.face, .arriere {
+  position: absolute; /* position absolute permet de ne pas etre enfonce dans la grille */
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;  /* backface-visibility permet de ne pas afficher les deux face quand ont retourne la card*/
+  -webkit-backface-visibility: hidden; /* pour Chrome et Safari */
+}
+
+.face {
+  background: #333;
+  transform: rotateY(180deg); /* permet de retourner la card de 180deg pour afficher la face visible */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.face img {
+  width: 120px;
+}
+.arriere {
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+}
+.active {
+  transform: rotateY(180deg)  /* permet de retourner la card de 180deg pour afficher la face visible */
+}
